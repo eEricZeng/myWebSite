@@ -101,14 +101,12 @@ $(function () {
 
                     /* CALLBACK FOR SENDING EMAIL GOEAS HERE */
                     success: function (data) {
-
                         // If the returned login value successful.
                         if (data && !data.error) {
-
                            // notify user that message has been sent
-  $('.send_message_form input').val("");
-  $('.send_message_form textarea').val("");
-  $('.message-ok').removeClass('invisible');
+                          $('.send_message_form input').val("");
+                          $('.send_message_form textarea').val("");
+                          $('.message-ok').removeClass('invisible');
                         }
                         // Else the login credentials were invalid.
                         else {
