@@ -10,6 +10,9 @@ public class Constant {
     /**网站邮箱密码**/
     public static String serviceEmailPwd = ReadConfig.getString("service_email_pwd");
     
+    /**网站发件人名字**/
+    public static String serviceEmailName = ReadConfig.getString("service_email_name");
+    
     /**默认回复邮件主题**/
     public static String defaultSubject = ReadConfig.getString("default_subject");
     
