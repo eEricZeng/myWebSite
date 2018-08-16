@@ -5,18 +5,12 @@
  * external URL such as:  url: 'http://www.example.com/avenir/ajaxserver/server.php'
  * depending to your requirements
  */
-var email_server_url = './ajaxserver/serverfile.php';
-var message_server_url = './ajaxserver/serverfile.php';
-//Check if action attribute (which indicates server) of form tag is set, then choose it (low 
-if($('.send_email_form').attr('action') && ($('.send_email_form').attr('action')) != ''){
-    email_server_url = $('.send_email_form').attr('action');
-}
+var context = getContextPath();
+//var email_server_url = './ajaxserver/serverfile.php';
+//var message_server_url = './ajaxserver/serverfile.php';
 
-if($('.send_message_form').attr('action') && ($('.send_message_form').attr('action') != '')){
-    message_server_url = $('.send_message_form').attr('action');
-}
-
-
+var email_server_url = context+"/service";
+var message_server_url = context+"/service/home/email";
 
 $(function () {
 
@@ -95,7 +89,8 @@ $(function () {
                      */
                     url: message_server_url,
                     // url: $('.send_message_form').attr('action'),
-                    type: 'get',
+                    type: 'POST',
+                    contentType: "application/x-www-form-urlencoded;charset=UTF-8",
                     data: form_data,
                     dataType: 'json',
 
@@ -138,3 +133,10 @@ $(function () {
     
 });
 
+// 静态页面获取contenxPath
+function getContextPath(){ 
+    var pathName = document.location.pathname; 
+    var index = pathName.substr(1).indexOf("/"); 
+    var result = pathName.substr(0,index+1); 
+    return result; 
+}
