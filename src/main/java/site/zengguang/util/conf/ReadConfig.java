@@ -3,6 +3,7 @@ package site.zengguang.util.conf;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Properties;
 
 /**
@@ -29,7 +30,7 @@ public class ReadConfig {
             properties = new Properties();
             inputStream = ReadConfig.class.getClassLoader().getResourceAsStream(location);
             if (inputStream != null) {
-                properties.load(inputStream);
+                properties.load(new InputStreamReader(inputStream, "utf-8"));
                 hasLoad = true;
             } else {
                 throw new FileNotFoundException(location);
