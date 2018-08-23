@@ -26,7 +26,7 @@ public class HomeServiceImpl implements IHomeService{
 
     private final String SUCCESS="success";
     private final String SUCCESS_TRUE="true";
-    private final String SUCCESS_FALSE="false";
+//    private final String SUCCESS_FALSE="false";
     
     private final String HOST="mail.host";
     private final String PROTOCOL="mail.transport.protocol";

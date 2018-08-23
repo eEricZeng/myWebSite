@@ -18,6 +18,15 @@ public class HomePageController {
     @Autowired
     private IHomeService homeService;
     
+    /**
+     * 封装并转发用户邮件消息.
+     * 
+     * @param map,key[
+     *              email: 用户邮箱地址,
+     *              message: 用户邮件消息,
+     *              name: 用户姓名]
+     * @return
+     */
     @RequestMapping(value="/email", method=RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> sendEmail(@RequestParam Map<String,Object> map){
