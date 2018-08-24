@@ -17,19 +17,26 @@ public class IHomeServiceTest {
 
     @Autowired
     private IHomeService homeService;
+    Map<String,Object> map = null;
     
+    @SuppressWarnings("serial")
     @Before
     public void setUp() throws Exception {
+        map = new HashMap<String,Object>() {{
+            this.put("email", "549373335@qq.com");
+            this.put("name", "coder");
+            this.put("message", "HELLO WORLD");
+        }};
     }
 
     @After
     public void tearDown() throws Exception {
+        
     }
 
     @Test
     public void testSendEmail() {
-        Map<String,Object> map = new HashMap<>();
-        homeService.sendEmail(map);
+        homeService.emailService(map);
     }
 
 }
