@@ -5,7 +5,8 @@ import java.util.Map;
 public interface IHomeService {
     
     /**
-     * 发送电子邮件.
+     * 邮件服务.<br>
+     * 把邮件信息转发给管理员，并告诉访问用户已经收到消息.
      * 
      * @param map 前端发送的信息,key[
      *                          name: 用户姓名
@@ -13,5 +14,5 @@ public interface IHomeService {
      *                          message: 发送的邮件消息]
      * @return
      */
-    Map<String,Object> sendEmail(Map<String, Object> map);
+    Map<String, Object> emailService(Map<String, Object> map);
 }

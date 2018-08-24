@@ -30,6 +30,6 @@ public class HomePageController {
     @RequestMapping(value="/email", method=RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> sendEmail(@RequestParam Map<String,Object> map){
-        return homeService.sendEmail(map);
+        return homeService.emailService(map);
     }
 }

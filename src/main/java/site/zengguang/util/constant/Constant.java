@@ -18,4 +18,7 @@ public class Constant {
     
     /**默认回复邮件内容**/
     public static String defaultContent = ReadConfig.getString("default_content");
+    
+    /**网站管理员邮箱**/
+    public static String adminEmail = ReadConfig.getString("admin_email");
 }

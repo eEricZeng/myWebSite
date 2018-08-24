@@ -26,20 +26,105 @@ public class HomeServiceImpl implements IHomeService{
 
     private final String SUCCESS="success";
     private final String SUCCESS_TRUE="true";
-//    private final String SUCCESS_FALSE="false";
+    private final String SUCCESS_FALSE="false";
     
     private final String HOST="mail.host";
     private final String PROTOCOL="mail.transport.protocol";
     private final String STMP_AUTH="mail.smtp.auth";
     
+    /**
+     * 邮件服务.<br>
+     * 把邮件信息转发给管理员，并告诉访问用户已经收到消息.
+     * 
+     * @param map 前端发送的信息,key[
+     *                          name: 用户姓名
+     *                          email: 邮件发送地址
+     *                          message: 发送的邮件消息]
+     * @return
+     */
     @SuppressWarnings("serial")
     @Override
-    public Map<String, Object> sendEmail(Map<String,Object> map) {
-        EmailMessage email = getVisitorWrapper(map);
-        sendEmail(email);
+    public Map<String, Object> emailService(Map<String, Object> map) {
+        Boolean isSendAdmin = sendEmailToAdmin(getAdminWrapper(map));
+        Boolean isSendVistor = sendEmailToVisitor(getVisitorWrapper(map));
+        if(isSendAdmin&&isSendVistor) {
+            return new HashMap<String,Object>(){{
+                this.put(SUCCESS,SUCCESS_TRUE);
+            }};
+        }
         return new HashMap<String,Object>(){{
-            this.put(SUCCESS, SUCCESS_TRUE);
+            this.put(SUCCESS, SUCCESS_FALSE);
         }};
+    }
+    
+    /**
+     * 向管理员发送访问用户发过来的消息.
+     * 
+     * @param email
+     * @return
+     */
+    private Boolean sendEmailToAdmin(EmailMessage adminWrapper) {
+        sendEmail(adminWrapper);
+        return true;
+    }
+
+    /**
+     * 向访问用户发送邮件，告知用户已收到消息.
+     * 
+     * @param visitorWrapper
+     * @return
+     */
+    private Boolean sendEmailToVisitor(EmailMessage visitorWrapper) {
+        sendEmail(visitorWrapper);
+        return true;
+    }
+
+    /**
+     * 封装前端发件人信息发给管理员.
+     * 
+     * @param map,key[
+     *              name:发件人姓名
+     *              email:发件人邮件地址
+     *              message:邮件信息]
+     * @return
+     */
+    private EmailMessage getAdminWrapper(Map<String, Object> map) {
+        String visitorName = (String) map.get("name");
+        String visitorEmail = (String) map.get("email");
+        String visitorMessage = (String) map.get("message");
+        String adminName = "administrator";
+        EmailMessage emailMessage = new EmailMessage(Constant.adminEmail,adminName);
+        emailMessage.setEmailSubject("来自网站访问用户"+visitorName+"的邮件");
+        StringBuffer content = new StringBuffer();
+        content.append("邮件来自：");
+        content.append(visitorEmail);
+        content.append("<br>");
+        content.append("邮件内容：");
+        content.append(visitorMessage);
+        emailMessage.setEmailContent(content.toString());
+        return emailMessage;
+    }
+    
+    /**
+     * 封装前端发件人信息.
+     * 
+     * @param map,key[
+     *              name:发件人姓名
+     *              email:发件人邮件地址
+     *              message:邮件信息]
+     * @return
+     */
+    private EmailMessage getVisitorWrapper(Map<String, Object> map) {
+        String visitorName = (String) map.get("name");
+        String visitorEmail = (String) map.get("email");
+        EmailMessage emailMessage = new EmailMessage(visitorEmail,visitorName);
+        StringBuffer content = new StringBuffer();
+        content.append("Dear ");
+        content.append(visitorName);
+        content.append(",<br>");
+        content.append(Constant.defaultContent);
+        emailMessage.setEmailContent(content.toString());
+        return emailMessage;
     }
     
     /**
@@ -69,39 +154,20 @@ public class HomeServiceImpl implements IHomeService{
             //5、发送邮件
             ts.sendMessage(message, message.getAllRecipients());
         } catch (NoSuchProviderException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (MessagingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }finally {
             try {
                 ts.close();
             } catch (MessagingException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
     }
     
-    /**
-     * 封装前端发件人信息.
-     * 
-     * @param map,key[
-     *              name:发件人姓名
-     *              email:发件人邮件地址
-     *              message:邮件信息]
-     * @return
-     */
-    private EmailMessage getVisitorWrapper(Map<String, Object> map) {
-        EmailMessage emailMessage = new EmailMessage((String) map.get("email"),(String) map.get("name"));
-        emailMessage.setEmailContent((String) map.get("message"));
-        return emailMessage;
-    }
-
     /**
      * 创建一封只包含文本的邮件.
      * 
