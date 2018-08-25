@@ -73,11 +73,11 @@ http://themeforest.net/licenses
     }
     .page-home .content h3 {
         font-size: 16px;
-    }    
+    }
+    
     .page-home .logo-container img.h-logo{
         height: 80px;
     }
-    
 }
 /* Screen small than 480 */
 @media (max-width : 480px){
