@@ -9,7 +9,7 @@ var context = getContextPath();
 //var email_server_url = './ajaxserver/serverfile.php';
 //var message_server_url = './ajaxserver/serverfile.php';
 
-var email_server_url = context+"/service";
+var email_server_url = context+"/service/home/register";
 var message_server_url = context+"/service/home/email";
 
 $(function () {
@@ -24,7 +24,7 @@ $(function () {
             form_inputs.each(function () {
                 form_data[this.name] = $(this).val(); 
             });
-            console.log(form_data);
+//            console.log(form_data);
 //            var form_data = $(form_fill).serialize();
 //            form_data['email'] = $('#email-sub').val(); 
             $.ajax(
@@ -77,7 +77,7 @@ $(function () {
             form_inputs.each(function () {
                 form_data[this.name] = $(this).val(); 
             });
-            console.log(form_data);
+//            console.log(form_data);
             
             $.ajax(
                 {
