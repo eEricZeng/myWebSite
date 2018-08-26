@@ -3,6 +3,7 @@ package site.zengguang.dialog.data;
 /**
  * 图灵API v2.0请求参数.
  * 请求地址：http://openapi.tuling123.com/openapi/api/v2
+ * @see https://www.kancloud.cn/turing/www-tuling123-com/718227
  * 
  * @author zengguang
  *
