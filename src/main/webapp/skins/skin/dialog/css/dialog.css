@@ -206,25 +206,6 @@ input, button {
     text-align: left;
 }
 
-.question_text i, .answer_text i {
-    width: 0;
-    height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    position: absolute;
-    top: 14px;
-}
-
-.answer_text i {
-    border-right: 6px solid #fff;
-    left: 6px;
-}
-
-.question_text i {
-    border-left: 6px solid #8CCC49;
-    right: 6px;
-}
-
 .answer_text p a {
     color: #42929d;
     display: inline-block;

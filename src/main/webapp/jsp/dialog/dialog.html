@@ -1,21 +1,23 @@
 <!doctype html>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<meta charset="utf-8">
-	
-	<!-- Page Title Here -->
-	<title>智能对话</title>
-	
-	<!-- Page Description Here -->
-	<meta name="description" content="我的聊天机器人">
-	
-	<!-- Disable screen scaling-->
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0">
-	
-	<!-- CSS files -->
-	<link rel="stylesheet" type="text/css" href="../../skins/skin/dialog/css/dialog.css">
-	
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+
+<!-- Page Title Here -->
+<title>智能对话</title>
+
+<!-- Page Description Here -->
+<meta name="description" content="我的聊天机器人">
+
+<!-- Disable screen scaling-->
+<meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+<!-- CSS files -->
+<link rel="stylesheet" type="text/css"
+    href="../../skins/skin/dialog/css/dialog.css">
+
 </head>
 <body>
 	<div class="speak_window">
@@ -26,23 +28,46 @@
 				</div>
 				<div class="answer_text">
 					<p>嗨，小帅帅在此！您有什么想跟我说的，都可以在这里跟我讲哦！</p>
-					<i></i>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="wenwen-footer">
-		<img src="../../skins/skin/dialog/img/visitor.jpg" style="width: 30px;">
+		<img src="../../skins/skin/dialog/img/visitor.jpg"
+			style="width: 30px;">
 		<div class="wenwen_text left">
 			<div class="write_box">
-				<input type="text" class="left" placeholder="请在这里输入文字">
+				<input id="input-text" type="text" class="left"
+					autofocus="autofocus" placeholder="请在这里输入文字">
 			</div>
 		</div>
 		<div class="wenwen_help right">
-			<button onclick="up_say()" class="right">发送</button>
+			<button id="send-message" class="right">发送</button>
 		</div>
 	</div>
 	<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../../skins/js/common/arttemplate.js"></script>
+	<script type="text/javascript" src="../../skins/js/common/mywebsite.js"></script>
 	<script type="text/javascript" src="../../skins/js/dialog/dialog.js"></script>
+	<script id="robot-template" type="text/html">
+        <div class="answer">
+            <div class="heard_img left">
+                <img src="../../skins/skin/dialog/img/{{robotName}}.jpg"/>
+            </div>
+            <div class="answer_text">
+                <p>{{message}}</p>
+            </div>
+        </div>
+    </script>
+    <script id="question-template" type="text/html">
+        <div class="question">
+            <div class="heard_img right">
+                <img src="../../skins/skin/dialog/img/visitor.jpg"/>
+            </div>
+            <div class="question_text clear">
+                <p>{{message}}</p>
+            </div>
+        </div>
+    </script>
 </body>
 </html>

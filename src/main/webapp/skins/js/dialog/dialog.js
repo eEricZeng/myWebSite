@@ -1,3 +1,136 @@
+$(function() {
+    // 绑定事件
+    initAllEvent();
+})
+
+function initAllEvent() {
+    // 输入内容监听
+    $(document).on('keyup', '#input-text', listenInput);
+    // 发送点击事件
+    $(document).on('click', '#send-message', sendQuestion);
+}
+
+/*发送点击事件*/
+function sendQuestion(){
+    var message = $('#input-text').val();
+    $('#input-text').val('');
+    $('#input-text').focus();
+    send(message);
+    var context = getContextPath();
+    $.ajax({
+        url: context + "/service/dialog/bot/single",
+        type: "POST",
+        contentType: "application/json;charset=UTF-8",
+        data: JSON.stringify({
+            "message": message
+        }),
+        dataType: "json",
+        success:function(data){
+            
+        }
+    });
+//    autoWidth();
+//    upView();
+}
+
+/* 输入内容监听 */
+function listenInput(event) {
+    if (event.keyCode == 13) {
+        $('#send-message').trigger('click');
+    }
+}
+
+/* 发送消息 */
+function send(message) {
+    var html = template("question-template", {
+        "type" : "answer",
+        "time" : timeListen(),
+        "message" : message
+    });
+    upView(html);
+}
+/* 接受消息 */
+function show(message) {
+    var html = template("robot-template", {
+        "type" : "question",
+        "time" : timeListen(),
+        "robotName": "robot1",
+        "message" : message
+    });
+    upView(html);
+}
+
+var lastTime = 0;
+/**时间监控，超过1分钟未回复则打印时间*/
+function timeListen(){
+    var currentTime = new Date();
+    var time="";
+    if(0==lastTime||currentTime-lastTime>60000){
+        time = timeFormat(currentTime,'yyyy-MM-dd hh:mm');
+    }
+    lastTime = currentTime;
+    return time;
+}
+
+function timeFormat(date, format) {  
+    
+    date = new Date(date);  
+
+    var map = {  
+        "M": date.getMonth() + 1, //月份   
+        "d": date.getDate(), //日   
+        "h": date.getHours(), //小时   
+        "m": date.getMinutes(), //分   
+        "s": date.getSeconds(), //秒   
+        "q": Math.floor((date.getMonth() + 3) / 3), //季度   
+        "S": date.getMilliseconds() //毫秒   
+    };  
+    format = format.replace(/([yMdhmsqS])+/g, function (all, t) {  
+        var v = map[t];  
+        if (v !== undefined) {  
+            if (all.length > 1) {  
+                v = '0' + v;  
+                v = v.substr(v.length - 2);  
+            }  
+            return v;  
+        } else if (t === 'y') {  
+            return (date.getFullYear() + '').substr(4 - all.length);  
+        }  
+        return all;  
+    });  
+    return format;  
+}
+
+//template日期格式化
+/*template.helper('dateFormat', function(date, format) {  
+    
+    date = new Date(date);  
+
+    var map = {  
+        "M": date.getMonth() + 1, //月份   
+        "d": date.getDate(), //日   
+        "h": date.getHours(), //小时   
+        "m": date.getMinutes(), //分   
+        "s": date.getSeconds(), //秒   
+        "q": Math.floor((date.getMonth() + 3) / 3), //季度   
+        "S": date.getMilliseconds() //毫秒   
+    };  
+    format = format.replace(/([yMdhmsqS])+/g, function (all, t) {  
+        var v = map[t];  
+        if (v !== undefined) {  
+            if (all.length > 1) {  
+                v = '0' + v;  
+                v = v.substr(v.length - 2);  
+            }  
+            return v;  
+        } else if (t === 'y') {  
+            return (date.getFullYear() + '').substr(4 - all.length);  
+        }  
+        return all;  
+    });  
+    return format;  
+});*/
+
 var Bene = [
         '你终于来啦，我找你N年了，去火星干什么了？我现在去冥王星，回头跟你说个事，别走开啊！',
         '有事找我请大叫！',
@@ -29,7 +162,7 @@ var Bene = [
 function up_say() {
     var text = $('.write_box input').val(), str = '<div class="question">';
     str += '<div class="heard_img right"><img src="../../skins/skin/dialog/img/visitor.jpg"/></div>';
-    str += '<div class="question_text clear"><p>' + text + '</p><i></i>';
+    str += '<div class="question_text clear"><p>' + text + '</p>';
     str += '</div></div>';
 
     if (text == '') {
@@ -41,21 +174,22 @@ function up_say() {
         // $('.write_box input').focus();
         $(".write_box input").blur();
         autoWidth();
-        for_bottom();
+        upView();
         setTimeout(
                 function() {
                     var Benelen = Math.floor(Math.random() * 29);
                     var ans = '<div class="answer"><div class="heard_img left"><img src="../../skins/skin/dialog/img/robot1.jpg"/></div>';
                     ans += '<div class="answer_text"><p>' + Bene[Benelen]
-                            + '</p><i></i>';
+                            + '</p>';
                     ans += '</div></div>';
                     $('.speak_box').append(ans);
-                    for_bottom();
+                    upView();
                 }, 1000);
     }
 }
 
-function for_bottom() {
+function upView(html) {
+    $('.speak_box').append(html);
     var speak_height = $('.speak_box').height();
     $('.speak_box,.speak_window').animate({
         scrollTop : speak_height
