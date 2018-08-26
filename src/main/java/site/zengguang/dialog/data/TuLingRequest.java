@@ -8,7 +8,7 @@ package site.zengguang.dialog.data;
  * @author zengguang
  *
  */
-public class TunLingRequest {
+public class TuLingRequest {
     
     // 输入类型:0-文本(默认)、1-图片、2-音频
     String reqType;
