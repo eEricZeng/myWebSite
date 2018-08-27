@@ -51,11 +51,12 @@ public class HttpClientUtils {
                 } catch (Exception e) {
                     logger.error("post请求提交失败:" + url, e);
                 }
+                return jsonResult;
             }
         } catch (IOException e) {
             logger.error("post请求提交失败:" + url, e);
         }
-        return jsonResult;
+        return null;
     }
     
 }
