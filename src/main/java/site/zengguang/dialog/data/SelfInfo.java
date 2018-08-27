@@ -10,12 +10,17 @@ public class SelfInfo {
     // 地理位置信息
     Location location;
 
+    /**
+     * 客户端属性构造函数.
+     * 
+     * @param location 地理位置信息
+     */
+    public SelfInfo(Location location) {
+        this.location = location;
+    }
+    
     public Location getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-    
 }

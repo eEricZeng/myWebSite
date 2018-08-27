@@ -19,13 +19,18 @@ public class Location {
     
     // 街道
     String street;
+    
+    /**
+     * 地理信息构造函数.
+     * 
+     * @param city
+     */
+    public Location(String city) {
+        this.city = city;
+    }
 
     public String getCity() {
         return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
     }
 
     public String getProvince() {

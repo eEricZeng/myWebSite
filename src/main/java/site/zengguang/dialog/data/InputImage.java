@@ -13,13 +13,18 @@ public class InputImage {
     // 图片地址
     @NotBlank
     String url;
+    
+    /**
+     * 图片信息构造函数.
+     * 
+     * @param url 图片地址
+     */
+    public InputImage(String url) {
+        this.url = url;
+    }
 
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-    
 }

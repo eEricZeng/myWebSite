@@ -18,29 +18,29 @@ public class TuLingRequest {
     
     // 用户参数
     UserInfo userInfo;
+    
+    public TuLingRequest(Perception perception,UserInfo userInfo) {
+        this.reqType = new Integer(0).toString();
+        this.perception = perception;
+        this.userInfo = userInfo;
+    }
+    
+    public TuLingRequest(String reqType,Perception perception,UserInfo userInfo) {
+        this.reqType = reqType;
+        this.perception = perception;
+        this.userInfo = userInfo;
+    }
 
     public String getReqType() {
         return reqType;
-    }
-
-    public void setReqType(String reqType) {
-        this.reqType = reqType;
     }
 
     public Perception getPerception() {
         return perception;
     }
 
-    public void setPerception(Perception perception) {
-        this.perception = perception;
-    }
-
     public UserInfo getUserInfo() {
         return userInfo;
-    }
-
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
     }
     
 }

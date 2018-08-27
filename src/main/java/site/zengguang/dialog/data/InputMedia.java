@@ -13,13 +13,18 @@ public class InputMedia {
     // 音频地址
     @NotBlank
     String url;
+    
+    /**
+     * 音频信息构造函数.
+     * 
+     * @param url 音频地址
+     */
+    public InputMedia(String url) {
+        this.url = url;
+    }
 
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-    
 }

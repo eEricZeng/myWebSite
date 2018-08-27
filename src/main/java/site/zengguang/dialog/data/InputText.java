@@ -14,12 +14,17 @@ public class InputText {
     @NotBlank
     String text;
 
+    /**
+     * 输入文本构造函数.
+     * 
+     * @param text 用户输入的文本
+     */
+    public InputText(String text) {
+        this.text = text;
+    }
+    
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-    
 }
