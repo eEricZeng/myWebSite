@@ -12,21 +12,42 @@ function initAllEvent() {
 
 /*发送点击事件*/
 function sendQuestion(){
-    var message = $('#input-text').val();
+    var question = $('#input-text').val();
     $('#input-text').val('');
     $('#input-text').focus();
-    send(message);
+    send(question);
     var context = getContextPath();
     $.ajax({
         url: context + "/service/dialog/bot/single",
         type: "POST",
         contentType: "application/json;charset=UTF-8",
         data: JSON.stringify({
-            "message": message
+            "question": question
         }),
         dataType: "json",
         success:function(data){
-            
+            if(data.success=="true"){
+                var response = data.response;
+                var answers = response.results;
+                for(var i in answers){
+                    switch(answers[i].resultType){
+                        case "text":
+                            show(answers[i].values.text);break;
+                        case "image":// TODO 完成非文本类型答案展示
+                            break;
+                        case "url":
+                            break;
+                        case "voice":
+                            break;
+                        case "video":
+                            break;
+                        case "news":
+                            break;
+                    }
+                }
+            }else if(data.success=="false"){
+                show("我不知道你在说啥。。。");
+            }
         }
     });
 //    autoWidth();

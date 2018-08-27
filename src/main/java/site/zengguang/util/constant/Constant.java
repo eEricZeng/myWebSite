@@ -21,4 +21,10 @@ public class Constant {
     
     /**网站管理员邮箱**/
     public static String adminEmail = ReadConfig.getString("admin_email");
+    
+    /**图灵问答接口**/
+    public static final String TULING_URL = ReadConfig.getString("tuling_url");
+    
+    /**图灵机器人aipkey**/
+    public static final String APIKEY = ReadConfig.getString("apikey");
 }
