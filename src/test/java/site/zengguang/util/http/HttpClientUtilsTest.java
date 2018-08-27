@@ -23,17 +23,10 @@ public class HttpClientUtilsTest {
     @Test
     public void testPost() {
         String url = "http://openapi.tuling123.com/openapi/api/v2";
-        InputText inputText = new InputText();
-        inputText.setText("hello world！");
-        Perception perception = new Perception();
-        perception.setInputText(inputText);
-        UserInfo userInfo = new UserInfo();
-        userInfo.setApiKey("apiKey");
-        userInfo.setUserId("userId");
-        TuLingRequest tl = new TuLingRequest();
-        tl.setReqType("0");
-        tl.setPerception(perception);
-        tl.setUserInfo(userInfo);
+        InputText inputText = new InputText("hello world！");
+        Perception perception = new Perception(inputText);
+        UserInfo userInfo = new UserInfo("apiKey","userId");
+        TuLingRequest tl = new TuLingRequest(perception, userInfo);
         JSONObject map = JSONObject.fromObject(tl);
         JSONObject obj = HttpClientUtils.httpPost(url,map);
         System.out.println(obj);
