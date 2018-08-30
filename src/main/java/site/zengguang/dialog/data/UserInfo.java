@@ -1,6 +1,6 @@
 package site.zengguang.dialog.data;
 
-import javax.validation.constraints.NotBlank;
+import org.apache.commons.lang.Validate;
 
 /**
  * 图灵API v2.0用户参数.
@@ -11,11 +11,9 @@ import javax.validation.constraints.NotBlank;
 public class UserInfo {
 
     // 机器人标识
-    @NotBlank
     String apiKey;
 
     // 用户唯一标识
-    @NotBlank
     String userId;
 
     // 群聊唯一标识
@@ -23,16 +21,26 @@ public class UserInfo {
 
     // 群内用户昵称
     String userIdName;
-    
+
     /**
      * 用户参数构造函数.
      * 
-     * @param apiKey 图灵机器人apikey
-     * @param userId 用户ID
+     * @param apiKey
+     *            图灵机器人apikey
+     * @param userId
+     *            用户ID
      */
-    public UserInfo(String apiKey,String userId) {
+    public UserInfo(String apiKey, String userId) {
+        Validate.notEmpty(apiKey);
+        Validate.notEmpty(userId);
         this.apiKey = apiKey;
         this.userId = userId;
+    }
+
+    public UserInfo(String apiKey, String userId, String groupId, String userIdName) {
+        this(apiKey, userId);
+        this.groupId = groupId;
+        this.userIdName = userIdName;
     }
 
     public String getApiKey() {
@@ -58,5 +66,5 @@ public class UserInfo {
     public void setUserIdName(String userIdName) {
         this.userIdName = userIdName;
     }
-    
+
 }

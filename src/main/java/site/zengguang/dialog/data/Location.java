@@ -1,6 +1,6 @@
 package site.zengguang.dialog.data;
 
-import javax.validation.constraints.NotBlank;
+import org.apache.commons.lang.Validate;
 
 /**
  * 图灵API v2.0 地点信息参数.
@@ -11,21 +11,21 @@ import javax.validation.constraints.NotBlank;
 public class Location {
 
     // 所在城市
-    @NotBlank
     String city;
-    
+
     // 省份
     String province;
-    
+
     // 街道
     String street;
-    
+
     /**
      * 地理信息构造函数.
      * 
      * @param city
      */
     public Location(String city) {
+        Validate.notEmpty(city);
         this.city = city;
     }
 
@@ -48,5 +48,5 @@ public class Location {
     public void setStreet(String street) {
         this.street = street;
     }
-    
+
 }
