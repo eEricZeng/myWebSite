@@ -7,7 +7,6 @@ html {
 }
 
 body {
-    /* background:url(images/yuyin_bg.png) no-repeat; */
     background: #eee;
     background-size: 100%;
     font-family: "微软雅黑";
@@ -164,6 +163,10 @@ input, button {
 
 .answer_text {
     padding-left: 12px;
+}
+
+.answer_text p img{
+	width: 100%;
 }
 
 .question_text p {

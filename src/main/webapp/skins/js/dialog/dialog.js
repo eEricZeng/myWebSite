@@ -32,11 +32,11 @@ function sendQuestion(){
                 for(var i in answers){
                     switch(answers[i].resultType){
                         case "text":
-                            show(answers[i].values.text);break;
+                            show(answers[i].values);break;
                         case "image":// TODO 完成非文本类型答案展示
-                            break;
+                            show(answers[i].values);break;
                         case "url":
-                            break;
+                            show(answers[i].values);break;
                         case "voice":
                             break;
                         case "video":
@@ -46,13 +46,15 @@ function sendQuestion(){
                     }
                 }
             }else if(data.success=="false"){
-                show("我不知道你在说啥。。。");
+                show({text:"我不知道你在说啥。。。"});
             }
         }
     });
 //    autoWidth();
 //    upView();
 }
+
+var showAnswer = {}
 
 /* 输入内容监听 */
 function listenInput(event) {
@@ -70,13 +72,15 @@ function send(message) {
     });
     upView(html);
 }
-/* 接受消息 */
-function show(message) {
+/* 机器人消息 */
+function show(valObj) {
     var html = template("robot-template", {
         "type" : "question",
         "time" : timeListen(),
         "robotName": "robot1",
-        "message" : message
+        "message" : valObj.text,
+        "url": valObj.url,
+        "image": valObj.image
     });
     upView(html);
 }
