@@ -125,6 +125,13 @@ input, button {
     display: inline-block;
 }
 
+div.time{
+    display: block;
+    text-align: center;
+    margin: 10px 0px;
+    font-size: 10px
+}
+
 .left {
     float: left;
 }
@@ -166,7 +173,7 @@ input, button {
 }
 
 .answer_text p img{
-	width: 100%;
+    width: 100%;
 }
 
 .question_text p {
