@@ -50,4 +50,9 @@ public class TuLingRequest {
         return userInfo;
     }
 
+    @Override
+    public String toString() {
+        return "TuLingRequest [reqType=" + reqType + ", perception=" + perception + ", userInfo=" + userInfo + "]";
+    }
+
 }

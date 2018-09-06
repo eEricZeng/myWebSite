@@ -27,4 +27,9 @@ public class InputMedia {
         return url;
     }
 
+    @Override
+    public String toString() {
+        return "InputMedia [url=" + url + "]";
+    }
+
 }

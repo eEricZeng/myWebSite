@@ -27,4 +27,9 @@ public class InputImage {
         return url;
     }
 
+    @Override
+    public String toString() {
+        return "InputImage [url=" + url + "]";
+    }
+
 }

@@ -25,4 +25,9 @@ public class SelfInfo {
         return location;
     }
 
+    @Override
+    public String toString() {
+        return "SelfInfo [location=" + location + "]";
+    }
+
 }

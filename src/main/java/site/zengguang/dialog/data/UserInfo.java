@@ -67,4 +67,10 @@ public class UserInfo {
         this.userIdName = userIdName;
     }
 
+    @Override
+    public String toString() {
+        return "UserInfo [apiKey=" + apiKey + ", userId=" + userId + ", groupId=" + groupId + ", userIdName="
+                + userIdName + "]";
+    }
+
 }

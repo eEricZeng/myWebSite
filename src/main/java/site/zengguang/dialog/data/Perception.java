@@ -110,4 +110,10 @@ public class Perception {
         return selfInfo;
     }
 
+    @Override
+    public String toString() {
+        return "Perception [inputText=" + inputText + ", inputImage=" + inputImage + ", inputMedia=" + inputMedia
+                + ", selfInfo=" + selfInfo + "]";
+    }
+
 }

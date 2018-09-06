@@ -27,4 +27,9 @@ public class InputText {
         return text;
     }
 
+    @Override
+    public String toString() {
+        return "InputText [text=" + text + "]";
+    }
+
 }
