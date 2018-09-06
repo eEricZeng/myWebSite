@@ -59,4 +59,10 @@ public class HttpClientUtils {
         return null;
     }
     
+    /**
+     * 禁用工具类的构造方法.
+     */
+    private HttpClientUtils() {
+    }
+    
 }

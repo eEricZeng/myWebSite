@@ -12,17 +12,37 @@ import java.util.Properties;
  * @author zengguang
  */
 public class ReadConfig {
-    
+
     private static Properties properties;
     private static String configFile = "config/mywebsite.properties";
-    
-    /** 是否加载过配置文件*/
+
+    /** 是否加载过配置文件 */
     private static boolean hasLoad = false;
-    
+
+    /**
+     * 根据key获取配置文件中的值.
+     * 
+     * @param key
+     * @return
+     */
+    public static String getString(String key) {
+        if (!hasLoad) {
+            loadProperties(configFile);
+        }
+        return properties.getProperty(key);
+    }
+
+    /**
+     * 禁用工具类的构造方法.
+     */
+    private ReadConfig() {
+    }
+
     /**
      * 加载properties文件.
      * 
-     * @param location properties文件路径
+     * @param location
+     *            properties文件路径
      */
     private static void loadProperties(String location) {
         InputStream inputStream = null;
@@ -45,18 +65,5 @@ public class ReadConfig {
             }
         }
     }
-    
-    /**
-     * 根据key获取配置文件中的值.
-     * 
-     * @param key
-     * @return
-     */
-    public static String getString(String key) {
-        if (!hasLoad) {
-            loadProperties(configFile);
-        }
-        return properties.getProperty(key);
-    }
-    
+
 }
