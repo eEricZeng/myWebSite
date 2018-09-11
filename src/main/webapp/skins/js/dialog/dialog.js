@@ -32,12 +32,12 @@ function sendQuestion(){
                 for(var i in answers){
                     switch(answers[i].resultType){
                         case "text":
-                            show(answers[i].values);break;
-                        case "image":// TODO 完成非文本类型答案展示
-                            show(answers[i].values);break;
+                            show(answers[i].values,"text");break;
+                        case "image":
+                            show(answers[i].values,"image");break;
                         case "url":
-                            show(answers[i].values);break;
-                        case "voice":
+                            show(answers[i].values,"url");break;
+                        case "voice": // TODO 语音、视频等类型答案展示
                             break;
                         case "video":
                             break;
@@ -52,8 +52,6 @@ function sendQuestion(){
     });
 }
 
-var showAnswer = {}
-
 /** 输入内容监听 */
 function listenInput(event) {
     if (event.keyCode == 13) {
@@ -64,21 +62,22 @@ function listenInput(event) {
 /** 发送消息 */
 function send(message) {
     var html = template("question-template", {
-        "type" : "answer",
-        "time" : timeListen(),
-        "message" : message
+        type : "answer",
+        time : timeListen(),
+        message : message
     });
     upView(html);
 }
 /** 机器人消息 */
-function show(valObj) {
+function show(valObj,resultType) {
     var html = template("robot-template", {
-        "type" : "question",
-        "time" : timeListen(),
-        "robotName": "robot1",
-        "message" : valObj.text,
-        "url": valObj.url,
-        "image": valObj.image
+        type : "question",
+        time : timeListen(),
+        robotName: "robot1",
+        message : valObj.text,
+        url: valObj.url,
+        image: valObj.image,
+        resultType: resultType 
     });
     upView(html);
 }

@@ -216,7 +216,16 @@ div.time{
     text-align: left;
 }
 
-.answer_text p a {
+.answer_text img,
+.answer_text a {
+	display: none;
+}
+
+p.image img{
+	display: unset;
+}
+
+p.url a {
     color: #42929d;
     display: inline-block;
 }
