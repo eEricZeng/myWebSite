@@ -3,7 +3,6 @@ package site.zengguang.dialog.data;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.util.Assert;
 
 public class TuLingRequestTest {
 
@@ -15,16 +14,14 @@ public class TuLingRequestTest {
     public void tearDown() throws Exception {
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testTuLingRequestPerceptionUserInfo() {
-        TuLingRequest tlReq = new TuLingRequest(null,null);
-        Assert.isTrue(null!=tlReq);
+        new TuLingRequest(null, null);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testTuLingRequestStringPerceptionUserInfo() {
-        TuLingRequest tlReq = new TuLingRequest(null,null,null);
-        Assert.isTrue(null!=tlReq);
+        new TuLingRequest(null, null, null);
     }
 
 }
