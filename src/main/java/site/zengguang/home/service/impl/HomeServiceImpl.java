@@ -14,6 +14,7 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeUtility;
 
 import org.springframework.stereotype.Service;
 
@@ -194,11 +195,11 @@ public class HomeServiceImpl implements IHomeService{
         //创建邮件对象
         MimeMessage message = new MimeMessage(session);
         //指明邮件的发件人
-        message.setFrom(new InternetAddress(email.getFrom(),email.getFromName()));
+        message.setFrom(new InternetAddress(email.getFrom(),MimeUtility.encodeWord(email.getFromName(),"UTF-8","Q")));
         //指明邮件的收件人，现在发件人和收件人是一样的，那就是自己给自己发
         message.setRecipient(Message.RecipientType.TO, new InternetAddress(email.getTo()));
         //邮件的标题
-        message.setSubject(email.getEmailSubject());
+        message.setSubject(MimeUtility.encodeWord(email.getEmailSubject(),"UTF-8","Q"));
         //发送日期
         message.setSentDate(new Date());
         //邮件的文本内容
