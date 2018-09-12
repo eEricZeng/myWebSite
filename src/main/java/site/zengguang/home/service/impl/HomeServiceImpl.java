@@ -31,6 +31,11 @@ public class HomeServiceImpl implements IHomeService{
     private final String HOST="mail.host";
     private final String PROTOCOL="mail.transport.protocol";
     private final String STMP_AUTH="mail.smtp.auth";
+    private final String MAIL_FACTORY_CLASS = "mail.smtp.socketFactory.class";
+    private final String MAIL_FACTORY_FALLBACK = "mail.smtp.socketFactory.fallback";
+    private final String PORT = "mail.smtp.port";
+    private final String FACTORY_PORT = "mail.smtp.socketFactory.port";
+    private final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
     
     /**
      * 邮件服务.<br>
@@ -136,6 +141,13 @@ public class HomeServiceImpl implements IHomeService{
         Properties prop = new Properties();
         prop.setProperty(HOST, email.getEmailHost());
         prop.setProperty(PROTOCOL, email.getProtocol());
+        // 如果设置,指定实现javax.net.SocketFactory接口的类的名称,这个类将被用于创建SMTP的套接字。
+        prop.setProperty(MAIL_FACTORY_CLASS, SSL_FACTORY);
+        // 如果设置为true,未能创建一个套接字使用指定的套接字工厂类将导致使用java.net.Socket创建的套接字类。默认值为true。
+        prop.setProperty(MAIL_FACTORY_FALLBACK, "false");
+        prop.setProperty(PORT, "465");
+        // 指定的端口连接到在使用指定的套接字工厂。如果没有设置,将使用默认端口。
+        prop.setProperty(FACTORY_PORT, "465");
         prop.setProperty(STMP_AUTH, "true");
         
         //使用JavaMail发送邮件的5个步骤
