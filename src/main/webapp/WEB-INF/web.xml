@@ -21,6 +21,12 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     
+    <!-- XSS注入过滤器 -->
+    <filter>
+        <filter-name>XSSFilter</filter-name>
+        <filter-class>site.zengguang.util.security.XSSFilter</filter-class>
+    </filter>
+    
     <!-- 设置session过期时间 -->
     <session-config>
         <session-timeout>15</session-timeout> 
