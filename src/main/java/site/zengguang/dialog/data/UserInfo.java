@@ -10,17 +10,25 @@ import org.apache.commons.lang.Validate;
  */
 public class UserInfo {
 
-    // 机器人标识
-    String apiKey;
+    /**
+     * 机器人标识
+     */
+    private String apiKey;
 
-    // 用户唯一标识
-    String userId;
+    /**
+     * 用户唯一标识
+     */
+    private String userId;
 
-    // 群聊唯一标识
-    String groupId;
+    /**
+     * 群聊唯一标识
+     */
+    private String groupId;
 
-    // 群内用户昵称
-    String userIdName;
+    /**
+     * 群内用户昵称
+     */
+    private String userIdName;
 
     /**
      * 用户参数构造函数.

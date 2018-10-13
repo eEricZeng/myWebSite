@@ -12,14 +12,20 @@ import org.apache.commons.lang.Validate;
  */
 public class TuLingRequest {
 
-    // 输入类型:0-文本(默认)、1-图片、2-音频
-    String reqType;
+    /**
+     * 输入类型:0-文本(默认)、1-图片、2-音频
+     */
+    private String reqType;
 
-    // 输入信息
-    Perception perception;
+    /**
+     * 输入信息
+     */
+    private Perception perception;
 
-    // 用户参数
-    UserInfo userInfo;
+    /**
+     * 用户参数
+     */
+    private UserInfo userInfo;
 
     public TuLingRequest(Perception perception, UserInfo userInfo) {
         this.reqType = new Integer(0).toString();

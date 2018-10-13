@@ -10,9 +10,11 @@ import javax.validation.constraints.NotBlank;
  */
 public class InputMedia {
 
-    // 音频地址
+    /**
+     *  音频地址.
+     */
     @NotBlank
-    String url;
+    private String url;
     
     /**
      * 音频信息构造函数.

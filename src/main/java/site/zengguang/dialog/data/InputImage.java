@@ -10,9 +10,11 @@ import javax.validation.constraints.NotBlank;
  */
 public class InputImage {
 
-    // 图片地址
+    /**
+     * 图片地址.
+     */
     @NotBlank
-    String url;
+    private String url;
     
     /**
      * 图片信息构造函数.

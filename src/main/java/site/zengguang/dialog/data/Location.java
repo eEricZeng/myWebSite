@@ -10,14 +10,20 @@ import org.apache.commons.lang.Validate;
  */
 public class Location {
 
-    // 所在城市
-    String city;
+    /**
+     * 所在城市
+     */
+    private String city;
 
-    // 省份
-    String province;
+    /**
+     * 省份
+     */
+    private String province;
 
-    // 街道
-    String street;
+    /**
+     * 街道
+     */
+    private String street;
 
     /**
      * 地理信息构造函数.

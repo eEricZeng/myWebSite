@@ -8,8 +8,10 @@ package site.zengguang.dialog.data;
  */
 public class SelfInfo {
 
-    // 地理位置信息
-    Location location;
+    /**
+     * 地理位置信息
+     */
+    private Location location;
 
     /**
      * 客户端属性构造函数.

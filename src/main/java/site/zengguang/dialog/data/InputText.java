@@ -10,9 +10,11 @@ import javax.validation.constraints.NotBlank;
  */
 public class InputText {
 
-    // 输入文本
+    /**
+     * 输入文本.
+     */
     @NotBlank
-    String text;
+    private String text;
 
     /**
      * 输入文本构造函数.

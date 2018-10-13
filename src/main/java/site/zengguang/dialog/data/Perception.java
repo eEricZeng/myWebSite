@@ -10,17 +10,25 @@ import org.apache.commons.lang.Validate;
  */
 public class Perception {
 
-    // 文本信息
-    InputText inputText;
+    /**
+     * 文本信息
+     */
+    private InputText inputText;
 
-    // 图片信息
-    InputImage inputImage;
+    /**
+     * 图片信息
+     */
+    private InputImage inputImage;
 
-    // 音频信息
-    InputMedia inputMedia;
+    /**
+     * 音频信息
+     */
+    private InputMedia inputMedia;
 
-    // 客户端属性
-    SelfInfo selfInfo;
+    /**
+     * 客户端属性
+     */
+    private SelfInfo selfInfo;
 
     /**
      * 仅含有文本信息的输入信息构造函数.
