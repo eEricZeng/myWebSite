@@ -4,9 +4,10 @@ import java.io.IOException;
 import java.net.URLDecoder;
 
 import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,11 +20,11 @@ import net.sf.json.JSONObject;
  * @author zengguang
  *
  */
-@SuppressWarnings("deprecation")
 public class HttpClientUtils {
     
     private static Logger logger = LoggerFactory.getLogger(HttpClientUtils.class); 
 
+    private final static Integer STATUS_OK = 200;
     /**
      * post请求
      * 
@@ -31,10 +32,9 @@ public class HttpClientUtils {
      * @param jsonParam 请求参数
      * @return
      */
-    @SuppressWarnings({ "resource" })
     public static JSONObject httpPost(String url, JSONObject jsonParam) {
         // post请求返回结果
-        DefaultHttpClient httpClient = new DefaultHttpClient();
+        HttpClient httpClient = HttpClientBuilder.create().build();
         JSONObject jsonResult = null;
         try {
             url = URLDecoder.decode(url, "UTF-8");
@@ -47,7 +47,7 @@ public class HttpClientUtils {
             }
             HttpResponse result = httpClient.execute(method);
             // 请求发送成功，并得到响应
-            if (result.getStatusLine().getStatusCode() == 200) {
+            if (result.getStatusLine().getStatusCode() == STATUS_OK) {
                 String str = "";
                 try {
                     // 读取服务器返回过来的json字符串数据
