@@ -2,6 +2,12 @@ package site.zengguang.dialog.service;
 
 import java.util.Map;
 
+/**
+ * 智能对话服务层接口。
+ * 
+ * @author zengguang
+ *
+ */
 public interface IDialogService {
 
     /**

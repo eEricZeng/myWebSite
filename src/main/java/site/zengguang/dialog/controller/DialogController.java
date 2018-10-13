@@ -13,6 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import site.zengguang.dialog.service.IDialogService;
 
+/**
+ * 智能对话controller层。
+ * 
+ * @author zengguang
+ *
+ */
 @Controller
 @RequestMapping(value="/dialog")
 public class DialogController {

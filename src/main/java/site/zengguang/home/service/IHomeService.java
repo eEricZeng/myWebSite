@@ -2,6 +2,12 @@ package site.zengguang.home.service;
 
 import java.util.Map;
 
+/**
+ * 首页业务层接口定义。
+ * 
+ * @author zengguang
+ *
+ */
 public interface IHomeService {
     
     /**

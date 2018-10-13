@@ -13,6 +13,12 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.json.JSONObject;
 
+/**
+ * HTTP请求工具类。
+ * 
+ * @author zengguang
+ *
+ */
 @SuppressWarnings("deprecation")
 public class HttpClientUtils {
     

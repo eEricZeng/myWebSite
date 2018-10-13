@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import site.zengguang.home.service.IHomeService;
 import site.zengguang.util.security.FormValidator;
 
+/**
+ * 首页controller层.
+ * 
+ * @author zengguang
+ *
+ */
 @Controller
 @RequestMapping(value="/home")
 public class HomePageController {

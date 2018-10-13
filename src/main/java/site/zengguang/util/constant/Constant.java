@@ -2,6 +2,12 @@ package site.zengguang.util.constant;
 
 import site.zengguang.util.conf.ReadConfig;
 
+/**
+ * 常量类。
+ * 
+ * @author zengguang
+ *
+ */
 public class Constant {
 
     /** 网站邮箱地址 **/

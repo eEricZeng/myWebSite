@@ -22,6 +22,12 @@ import site.zengguang.home.data.EmailMessage;
 import site.zengguang.home.service.IHomeService;
 import site.zengguang.util.constant.Constant;
 
+/**
+ * 首页业务层实现，主要是邮件转发服务。
+ * 
+ * @author zengguang
+ *
+ */
 @Service("homeService")
 public class HomeServiceImpl implements IHomeService{
 

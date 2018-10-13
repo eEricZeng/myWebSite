@@ -14,6 +14,12 @@ import site.zengguang.dialog.service.IDialogService;
 import site.zengguang.util.constant.Constant;
 import site.zengguang.util.http.HttpClientUtils;
 
+/**
+ * 智能对话业务逻辑层。
+ * 
+ * @author zengguang
+ *
+ */
 @Service("dialogService")
 public class DialogServiceImpl implements IDialogService{
     
