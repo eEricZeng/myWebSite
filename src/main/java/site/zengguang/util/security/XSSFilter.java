@@ -18,18 +18,20 @@ import javax.servlet.http.HttpServletRequest;
 public class XSSFilter implements Filter {
 
     private FilterConfig config = null;
-    private static boolean no_init = true;
+    private static boolean noInit = true;
     private String apostrophe = "&#39;";
 
+    @Override
     public void init(FilterConfig paramFilterConfig) throws ServletException {
         this.config = paramFilterConfig;
-        no_init = false;
+        noInit = false;
         String str = paramFilterConfig.getInitParameter("apostrophe");
         if (str != null) {
             this.apostrophe = str.trim();
         }
     }
 
+    @Override
     public void destroy() {
         this.config = null;
     }
@@ -39,8 +41,8 @@ public class XSSFilter implements Filter {
     }
 
     public void setFilterConfig(FilterConfig paramFilterConfig) {
-        if (no_init) {
-            no_init = false;
+        if (noInit) {
+            noInit = false;
             this.config = paramFilterConfig;
             String str = paramFilterConfig.getInitParameter("apostrophe");
             if (str != null) {
@@ -49,6 +51,7 @@ public class XSSFilter implements Filter {
         }
     }
 
+    @Override
     public void doFilter(ServletRequest paramServletRequest, ServletResponse paramServletResponse,
             FilterChain paramFilterChain) throws IOException, ServletException {
         paramFilterChain.doFilter(new RequestWrapper((HttpServletRequest) paramServletRequest, this.apostrophe),

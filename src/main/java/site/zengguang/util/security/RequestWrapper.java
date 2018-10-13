@@ -1,5 +1,8 @@
 package site.zengguang.util.security;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +26,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         this.apostrophe = paramString;
     }
 
+    @Override
     public String[] getParameterValues(String paramString) {
         String[] arrayOfString = super.getParameterValues(paramString);
         if (arrayOfString == null) {
@@ -36,6 +40,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         return arrayOfString2;
     }
 
+    @Override
     public String getParameter(String paramString) {
         String str = super.getParameter(paramString);
         if (str == null) {
@@ -44,6 +49,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         return cleanXSS(str);
     }
 
+    @Override
     public String getHeader(String paramString) {
         String str = super.getHeader(paramString);
         if (str == null) {
@@ -64,29 +70,26 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         }
         String str = paramString;
         str = str.replaceAll("\000", "");
-        Pattern localPattern = Pattern.compile("<script>(.*?)</script>", 2);
-        str = localPattern.matcher(str).replaceAll("");
-        localPattern = Pattern.compile("src[\r\n]*=[\r\n]*\\'(.*?)\\'", 42);
-        str = localPattern.matcher(str).replaceAll("");
-        localPattern = Pattern.compile("src[\r\n]*=[\r\n]*\\\"(.*?)\\\"", 42);
-        str = localPattern.matcher(str).replaceAll("");
-        localPattern = Pattern.compile("</script>", 2);
-        str = localPattern.matcher(str).replaceAll("");
-        localPattern = Pattern.compile("<script(.*?)>", 42);
-        str = localPattern.matcher(str).replaceAll("");
-        localPattern = Pattern.compile("eval\\((.*?)\\)", 42);
-        str = localPattern.matcher(str).replaceAll("");
-        localPattern = Pattern.compile("expression\\((.*?)\\)", 42);
-        str = localPattern.matcher(str).replaceAll("");
-        localPattern = Pattern.compile("javascript:", 2);
-        str = localPattern.matcher(str).replaceAll("");
-        localPattern = Pattern.compile("vbscript:", 2);
-        str = localPattern.matcher(str).replaceAll("");
-        localPattern = Pattern.compile("onload(.*?)=", 42);
-        str = localPattern.matcher(str).replaceAll("");
+        for(Pattern localPattern: listPattern) {
+            str = localPattern.matcher(str).replaceAll("");
+        }
         str = str.replaceAll("\\(", "&#40;").replaceAll("\\)", "&#41;");
         str = str.replaceAll("'", this.apostrophe);
         str = str.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
         return str;
     }
+    
+    private static List<Pattern> listPattern = new ArrayList<>(Arrays.asList(
+                Pattern.compile("<script>(.*?)</script>", 2),
+                Pattern.compile("src[\r\n]*=[\r\n]*\\'(.*?)\\'", 42),
+                Pattern.compile("src[\r\n]*=[\r\n]*\\\"(.*?)\\\"", 42),
+                Pattern.compile("</script>", 2),
+                Pattern.compile("<script(.*?)>", 42),
+                Pattern.compile("eval\\((.*?)\\)", 42),
+                Pattern.compile("expression\\((.*?)\\)", 42),
+                Pattern.compile("javascript:", 2),
+                Pattern.compile("vbscript:", 2),
+                Pattern.compile("onload(.*?)=", 42)
+            ));
+    
 }
