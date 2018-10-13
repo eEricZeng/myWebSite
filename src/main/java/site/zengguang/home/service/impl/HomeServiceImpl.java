@@ -60,11 +60,11 @@ public class HomeServiceImpl implements IHomeService{
         Boolean isSendAdmin = sendEmailToAdmin(getAdminWrapper(map));
         Boolean isSendVistor = sendEmailToVisitor(getVisitorWrapper(map));
         if(isSendAdmin&&isSendVistor) {
-            return new HashMap<String,Object>(){{
+            return new HashMap<String,Object>(16){{
                 this.put(SUCCESS,SUCCESS_TRUE);
             }};
         }
-        return new HashMap<String,Object>(){{
+        return new HashMap<String,Object>(16){{
             this.put(SUCCESS, SUCCESS_FALSE);
         }};
     }

@@ -40,7 +40,7 @@ public class DialogServiceImpl implements IDialogService{
      */
     @Override
     public Map<String, Object> getBotAnswer(Map<String, Object> map, String sessionId) {
-        Map<String,Object> result = new HashMap<>();
+        Map<String,Object> result = new HashMap<>(16);
         String question = (String) map.get("question");
         Perception perception = new Perception(new InputText(question));
         UserInfo userInfo = new UserInfo(APIKEY, sessionId);
